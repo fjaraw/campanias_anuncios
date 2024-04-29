@@ -2,7 +2,11 @@ class Error(Exception):
     pass
 
 class SubTipoInvalidoError(Error):
-    pass
+    def __init__(self, mensaje):
+        super().__init__(mensaje)
+        self.mensaje = mensaje
 
 class ClassLargoExtendido(Error):
-    pass
+    def __init__(self, mensaje):
+        super().__init__(mensaje)
+        self.mensaje = mensaje

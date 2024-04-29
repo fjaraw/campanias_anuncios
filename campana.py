@@ -1,8 +1,9 @@
 from anuncio import Video, Display, Social
+from error import ClassLargoExtendido
 
 class Campaña:
     def __init__(self, nombre, fecha_inicio, fecha_termino):
-        if len(nombre) < 250:
+        if len(nombre) > 250:
             raise ClassLargoExtendido(f'Nombre invalido, sobrepasa 250 caracteres')
         self.__nombre = nombre
         self.__fecha_inicio = fecha_inicio
@@ -45,17 +46,17 @@ class Campaña:
                 num_display += 1
             if isinstance(anuncio, Social):
                 num_social += 1
-        print(f'Hay {num_videos} videos en este anuncio.')
-        print(f'Hay {num_display} displays en este anuncio.')
-        print(f'Hay {num_social} social en este anuncio.')
+        return f'Anuncios: {num_videos} Video, {num_display} Display, {num_social} Social'
     
     def crear_video(self, sub_tipo, url_archivo, url_clic, duracion):
         v = Video(sub_tipo, url_archivo, url_clic, duracion)
         self.__anuncios.append(v)
     
-    def crear_display(ancho,alto):
-        pass
+    def crear_display(self, ancho, alto, url_archivo, url_click , sub_tipo):
+        d = Display(ancho, alto, url_archivo, url_click, sub_tipo)
+        self.__anuncios.append(d)
     
-    def crear_social():
-        pass
+    def crear_social(self, ancho, alto, url_archivo, url_click ,sub_tipo):
+        s = Social(ancho, alto, url_archivo, url_click, sub_tipo)
+        self.__anuncios.append(s)
     
